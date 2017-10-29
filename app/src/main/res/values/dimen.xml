@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="h1">1dp</dimen>
+    <dimen name="h0">0dp</dimen>
+    <dimen name="h16">16dp</dimen>
+    <dimen name="h10">10dp</dimen>
+    <dimen name="h20">20dp</dimen>
+    <dimen name="s20">20sp</dimen>
+    <dimen name="h5">5dp</dimen>
+    <dimen name="h40">40dp</dimen>
+    <dimen name="h120">120dp</dimen>
+</resources>

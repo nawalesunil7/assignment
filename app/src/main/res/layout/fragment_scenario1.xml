@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_items"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h0"
+        android:layout_weight="1"
+        android:padding="@dimen/h5" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h1"
+        android:background="@color/grey" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager_frag"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h0"
+        android:layout_weight="2"
+        android:padding="@dimen/h5" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h1"
+        android:background="@color/grey" />
+    <!--Point 3-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/h5">
+
+        <TextView
+            android:id="@+id/txt1"
+            style="@style/text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/lbl_txt1" />
+
+        <TextView
+            android:id="@+id/txt2"
+            style="@style/text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt1"
+            android:gravity="center"
+            android:text="@string/lbl_txt2" />
+
+        <TextView
+            android:id="@+id/txt3"
+            style="@style/text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt2"
+            android:gravity="end"
+            android:text="@string/lbl_txt3" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h1"
+        android:background="@color/grey" />
+
+    <TextView
+        android:id="@+id/txt_section4"
+        style="@style/text_style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h0"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/h5" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h1"
+        android:background="@color/grey" />
+
+    <LinearLayout
+        android:id="@+id/layout_colorBtns"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/h0"
+        android:layout_weight="1.5"
+        android:orientation="horizontal"
+        android:padding="@dimen/h5">
+
+        <Button
+            android:id="@+id/btn1"
+            style="@style/text_style"
+            android:layout_width="@dimen/h0"
+            android:layout_margin="@dimen/h5"
+            android:background="@drawable/drawable_item_back"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/lbl_btnred" />
+
+        <Button
+            android:id="@+id/btn2"
+            style="@style/text_style"
+            android:layout_margin="@dimen/h5"
+            android:background="@drawable/drawable_item_back"
+            android:layout_width="@dimen/h0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/lbl_btnblue" />
+
+        <Button
+            android:id="@+id/btn3"
+            style="@style/text_style"
+            android:layout_width="@dimen/h0"
+            android:background="@drawable/drawable_item_back"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/h5"
+            android:layout_weight="1"
+            android:text="@string/lbl_btngreen" />
+    </LinearLayout>
+</LinearLayout>

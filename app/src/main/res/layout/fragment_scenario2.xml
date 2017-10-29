@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/h10">
+
+    <Spinner
+        android:id="@+id/sp_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/h5"
+        android:minHeight="@dimen/h40" />
+
+    <TextView
+        style="@style/text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/h20"
+        android:text="@string/lbl_mode_of_transport"
+        android:textSize="@dimen/s20" />
+
+    <TextView
+        android:id="@+id/txt_car"
+        style="@style/text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/h20"
+        android:padding="@dimen/h5"
+        android:text="@string/lbl_mode_of_transport" />
+
+    <TextView
+        android:id="@+id/txt_train"
+        style="@style/text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/h5"
+        android:padding="@dimen/h5"
+        android:text="@string/lbl_mode_of_transport" />
+
+    <Button
+        android:id="@+id/btn_navigate"
+        style="@style/text_style"
+        android:background="@drawable/drawable_item_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/h20"
+        android:gravity="center"
+        android:padding="@dimen/h5"
+        android:text="@string/lbl_btn_navigate" />
+</LinearLayout>
