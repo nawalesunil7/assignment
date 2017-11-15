@@ -8,9 +8,6 @@
     <string name="lbl_btngreen">Green</string>
 
     <string name="lbl_frag1">Fragment 1</string>
-    <string name="lbl_frag2">Fragment 2</string>
-    <string name="lbl_frag3">Fragment 3</string>
-    <string name="lbl_frag4">Fragment 4</string>
     <string name="lbl_mode_of_transport">Mode of Transport: </string>
     <string name="lbl_btn_navigate">NAVIGATE</string>
 </resources>

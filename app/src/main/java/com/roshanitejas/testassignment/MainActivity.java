@@ -1,38 +1,25 @@
 package com.roshanitejas.testassignment;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import com.adapter.SectionPagerAdapter;
 import com.fragments.Schenario1;
 import com.fragments.Schenario2;
 import com.sunilnawale.testassignment.R;
+import com.sunilnawale.testassignment.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    private SectionPagerAdapter adapter;
-    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        adapter = new SectionPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        Addfragment(mViewPager);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        SectionPagerAdapter adapter = new SectionPagerAdapter(getSupportFragmentManager());
+        adapter.addfragment(new Schenario1(), "Scenario1");
+        adapter.addfragment(new Schenario2(), "Scenario2");
+        binding.container.setAdapter(adapter);
+        binding.tabs.setupWithViewPager(binding.container);
     }
-
-    public void Addfragment(ViewPager mViewPager) {
-        adapter.addfragment(new Schenario1(),"Scenario1");
-        adapter.addfragment(new Schenario2(),"Scenario2");
-        mViewPager.setAdapter(adapter);
-
-    }
-
-
-
-
 
 }

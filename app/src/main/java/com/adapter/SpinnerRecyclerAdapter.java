@@ -37,17 +37,12 @@ public class SpinnerRecyclerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View itemView, ViewGroup parent) {
-        itemView = createCustomView(position, itemView, parent);
-        return itemView;
-    }
-
-    @NonNull
-    private View createCustomView(final int position, View itemView, ViewGroup parent) {
-        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_spinner_item, parent, false);
+        if(itemView==null) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_spinner_item, parent, false);
+        }
         TextView txt_location = (TextView) itemView.findViewById(R.id.txt_location);
         txt_location.setText(itemList.get(position).getName());
         return itemView;
     }
-
 
 }

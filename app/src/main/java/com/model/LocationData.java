@@ -2,8 +2,10 @@ package com.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class LocationData {
+
+public class LocationData implements Serializable{
     public int getId() {
         return id;
     }

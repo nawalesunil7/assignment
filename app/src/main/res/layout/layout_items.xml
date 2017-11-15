@@ -1,0 +1,19 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+    <variable
+        name="itm"
+        type="com.viewmodel.ItemModel" />
+    </data>
+
+    <TextView
+        android:id="@+id/recycler_item"
+        style="@style/text_style"
+        android:layout_width="@dimen/h120"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:text="@{itm.itemname}"
+        android:background="@drawable/drawable_item_back"
+        android:gravity="center"
+        android:padding="@dimen/h5" />
+</layout>

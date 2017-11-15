@@ -13,13 +13,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class utils {
-    public static void showToast(Context context, String Message) {
-        Toast toast = Toast.makeText(context, Message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
 
-    private static Retrofit retrofit = null;
+   private static Retrofit retrofit = null;
 
    public static Retrofit getClient() {
 

@@ -1,6 +1,7 @@
 package com.fragments;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,8 @@ import com.listeners.onItemClickedListener;
 import com.model.LocationData;
 import com.roshanitejas.testassignment.utils;
 import com.sunilnawale.testassignment.R;
+import com.sunilnawale.testassignment.databinding.FragmentScenario1Binding;
+import com.sunilnawale.testassignment.databinding.FragmentScenario2Binding;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -28,17 +31,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class Schenario2 extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
-    View v = null;
+public class Schenario2 extends BaseFragment implements AdapterView.OnItemSelectedListener {
     LocationData Selectedlocation = null;
     ArrayList<LocationData> locationListdata = null;
+    FragmentScenario2Binding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_scenario2, container, false);
-        final Spinner sp_location = (Spinner) v.findViewById(R.id.sp_location);
-        sp_location.setOnItemSelectedListener(this);
-        v.findViewById(R.id.btn_navigate).setOnClickListener(this);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_scenario2, container, false);
+        binding.spLocation.setOnItemSelectedListener(this);
         if (utils.isInternetOn(getActivity())) {
             APIInterface apiInterface = utils.getClient().create(APIInterface.class);
             Call call = apiInterface.doGetListLocations();
@@ -48,7 +49,7 @@ public class Schenario2 extends Fragment implements View.OnClickListener, Adapte
                     if (response.body() != null) {
                         locationListdata = (ArrayList<LocationData>) response.body();
                         if (locationListdata != null) {
-                            sp_location.setAdapter(new SpinnerRecyclerAdapter(locationListdata));
+                            binding.spLocation.setAdapter(new SpinnerRecyclerAdapter(locationListdata));
                         }
                     }
                 }
@@ -59,9 +60,29 @@ public class Schenario2 extends Fragment implements View.OnClickListener, Adapte
                 }
             });
         } else {
-            utils.showToast(getActivity(), "No internet available.");
+            showToast(getActivity(), "No internet available.");
         }
-        return v;
+        binding.btnNavigate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (utils.isInternetOn(getActivity())) {
+                    if (Selectedlocation != null && Selectedlocation.getLocationDetails() != null) {
+                        String uri = String.format(Locale.ENGLISH, "geo:%f,%f?z=%d&q=%f,%f (%s)",
+                                Double.parseDouble(Selectedlocation.getLocationDetails().getLatitude()), Double.parseDouble(Selectedlocation.getLocationDetails().getLongitude()), 100, Double.parseDouble(Selectedlocation.getLocationDetails().getLatitude()), Double.parseDouble(Selectedlocation.getLocationDetails().getLongitude()), Selectedlocation.getName());
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                        if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                            startActivity(mapIntent);
+                        } else {
+                            showToast(getActivity(), "Please install google map.");
+                        }
+
+                    }
+                } else {
+                    showToast(getActivity(), "No internet available.");
+                }
+            }
+        });
+        return binding.getRoot();
     }
 
     @Override
@@ -85,38 +106,9 @@ public class Schenario2 extends Fragment implements View.OnClickListener, Adapte
         @Override
         public void getSelectedLocationDetails(LocationData location) {
             Selectedlocation = location;
-            TextView txt_car = (TextView) v.findViewById(R.id.txt_car);
-
-            if (location.getCentrailsDetails() != null && !TextUtils.isEmpty(location.getCentrailsDetails().getCar()))
-                txt_car.setText("Car - " + location.getCentrailsDetails().getCar());
-            else
-                txt_car.setText("Car - ");
-            TextView txt_train = (TextView) v.findViewById(R.id.txt_train);
-            if (location.getCentrailsDetails() != null && !TextUtils.isEmpty(location.getCentrailsDetails().getTrain()))
-                txt_train.setText("Train - " + location.getCentrailsDetails().getTrain());
-            else
-                txt_train.setText("Train - ");
+            binding.txtCar.setText((location.getCentrailsDetails() != null && !TextUtils.isEmpty(location.getCentrailsDetails().getCar())) ? ("Car - " + location.getCentrailsDetails().getCar()) : ("Car - "));
+            binding.txtTrain.setText((location.getCentrailsDetails() != null && !TextUtils.isEmpty(location.getCentrailsDetails().getTrain())) ? ("Train - " + location.getCentrailsDetails().getTrain()) : "Train - ");
         }
     };
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.btn_navigate) {
-            if (utils.isInternetOn(getActivity())) {
-                if (Selectedlocation != null && Selectedlocation.getLocationDetails() != null) {
-                    String uri = String.format(Locale.ENGLISH, "geo:%f,%f?z=%d&q=%f,%f (%s)",
-                            Double.parseDouble(Selectedlocation.getLocationDetails().getLatitude()),  Double.parseDouble(Selectedlocation.getLocationDetails().getLongitude()), 100, Double.parseDouble(Selectedlocation.getLocationDetails().getLatitude()),   Double.parseDouble(Selectedlocation.getLocationDetails().getLongitude()), Selectedlocation.getName());
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                    if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        startActivity(mapIntent);
-                    }else{
-                        utils.showToast(getActivity(), "Please install google map.");
-                    }
-
-                }
-            } else {
-                utils.showToast(getActivity(), "No internet available.");
-            }
-        }
-    }
 }
