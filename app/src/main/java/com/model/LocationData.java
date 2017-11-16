@@ -38,16 +38,14 @@ public class LocationData implements Serializable{
         this.locationDetails = locationDetails;
     }
 
-    @SerializedName("id")
     int id;
-    @SerializedName("name")
     String name;
     @SerializedName("fromcentral")
-    fromcentral centrailsDetails=null;
+    fromcentral centrailsDetails;
     @SerializedName("location")
-    location locationDetails=null;
+    location locationDetails;
+
     public class fromcentral{
-        @SerializedName("car")
         String car;
 
         public String getCar() {
@@ -66,14 +64,13 @@ public class LocationData implements Serializable{
             this.train = train;
         }
 
-        @SerializedName("train")
         String train;
     }
 
     public class location{
-        @SerializedName("latitude")
+
         String latitude;
-        @SerializedName("longitude")
+
         String longitude;
 
         public String getLatitude() {
